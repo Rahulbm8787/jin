@@ -14,7 +14,7 @@ from typing import Optional, List, Dict, Any
 # Load environment variables
 load_dotenv()
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
-EMAIL_SENDER = st.secrets["EMAIL_ADDRESS"]
+EMAIL_SENDER = st.secrets["EMAIL_SENDER"]
 EMAIL_PASSWORD = st.secrets["EMAIL_PASSWORD"]
 
 # Load NLP Model
@@ -40,12 +40,12 @@ def send_otp(email):
     msg = EmailMessage()
     msg.set_content(f"Your OTP for verification is: {otp}")
     msg["Subject"] = "Your OTP Code"
-    msg["From"] = EMAIL_ADDRESS
+    msg["From"] = EMAIL_SENDER
     msg["To"] = email
 
     try:
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+            server.login(EMAIL_SENDER, EMAIL_PASSWORD)
             server.send_message(msg)
         return True
     except Exception as e:
