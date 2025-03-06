@@ -13,9 +13,9 @@ from typing import Optional, List, Dict, Any
 
 # Load environment variables
 load_dotenv()
-GEMINI_API_KEY = st.secrets("GEMINI_API_KEY")
-EMAIL_ADDRESS = st.secrets("EMAIL_ADDRESS")
-EMAIL_PASSWORD = st.secrets("EMAIL_PASSWORD")
+GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+EMAIL_ADDRESS = st.secrets["EMAIL_ADDRESS"]
+EMAIL_PASSWORD = st.secrets["EMAIL_PASSWORD"]
 
 # Load NLP Model
 nlp = spacy.load("en_core_web_sm")
