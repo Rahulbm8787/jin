@@ -1,0 +1,7 @@
+streamlit
+langgraph
+langchain
+google-generativeai
+spacy
+email-validator
+python-dotenv
