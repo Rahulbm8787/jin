@@ -3,5 +3,6 @@ langgraph
 langchain
 google-generativeai
 spacy
+en-core-web-sm
 email-validator
 python-dotenv
