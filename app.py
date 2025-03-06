@@ -11,6 +11,10 @@ from langchain.schema import SystemMessage, HumanMessage
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Any
 
+import spacy
+print(spacy.util.get_installed_models())  # Should list ['en_core_web_sm']
+
+
 # Load environment variables
 load_dotenv()
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
