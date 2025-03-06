@@ -145,26 +145,24 @@ graph = workflow.compile()
 # Streamlit UI
 st.title("🗺️ Historical Monument Chatbot")
 
-# ✅ FIX: Properly Initialize Session State
 if "state" not in st.session_state:
     st.session_state["state"] = ChatState(messages=[])
 
 user_input = st.text_input("You: ", "")
 
 if user_input:
-    # ✅ FIX: Ensure state is always ChatState object
     chat_state = st.session_state["state"]
 
-    # ✅ FIX: Append user input properly
+    # Append user input 
     chat_state.messages.append({"role": "user", "content": user_input})
 
-    # ✅ FIX: Pass a ChatState instance to LangGraph
+    # Pass a ChatState instance to LangGraph
     new_state = graph.invoke(chat_state)
 
-    # ✅ FIX: Store new state properly
+    # Store new state properly
     st.session_state["state"] = new_state
 
-# ✅ FIX: Ensure state always has messages
+# Ensure state always has messages
 if not hasattr(st.session_state["state"], "messages"):
     st.session_state["state"].messages = []
 
