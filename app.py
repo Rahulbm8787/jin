@@ -22,12 +22,13 @@ EMAIL_SENDER = st.secrets["EMAIL_SENDER"]
 EMAIL_PASSWORD = st.secrets["EMAIL_PASSWORD"]
 
 # Load NLP Model
-import subprocess
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
-    nlp = spacy.load("en_core_web_sm")
+from spacy.util import is_package
+
+if not is_package("en_core_web_sm"):
+    from spacy.cli import download
+    download("en_core_web_sm")
+
+nlp = spacy.load("en_core_web_sm")
 
 # Configure Google Gemini API
 genai.configure(api_key=GEMINI_API_KEY)
